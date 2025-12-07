@@ -139,6 +139,9 @@ export default function Home() {
 
       <main className="mx-auto max-w-3xl px-6 pt-28 md:pt-32 pb-20">
         <section className="mb-12 md:mb-16 space-y-6">
+          <span className="font-roboto text-cyan-500 font-medium tracking-wider uppercase text-sm md:text-base">
+            Hi, I'm Rafael Aguiar 👋
+          </span>
           <h1 className="font-roboto text-3xl md:text-5xl font-extrabold tracking-tight text-slate-100">
             Full-Stack Developer & <br />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-600">
