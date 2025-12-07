@@ -10,6 +10,7 @@ import {
   SiPowers,
   SiReact,
   SiTypescript,
+  SiBiome
 } from 'react-icons/si'
 
 import ProjectCard from '@/components/custom/project-card'
@@ -40,8 +41,8 @@ export default function Home() {
         'Personal finance management platform focused on performance and expense tracking.',
       techs: [
         { name: 'Next.js', icon: SiNextdotjs },
-        { name: 'Fastify', icon: SiFastify },
         { name: 'PostgreSQL', icon: SiPostgresql },
+        { name: 'Biome', icon: SiBiome },
       ],
     },
     {
@@ -60,6 +61,7 @@ export default function Home() {
       techs: [
         { name: 'Next.js', icon: SiNextdotjs },
         { name: 'React', icon: SiReact },
+        { name: 'Biome', icon: SiBiome },
       ],
     },
   ]
