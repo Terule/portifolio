@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 import { Inter, Roboto } from 'next/font/google'
 import './globals.css'
 
+import { ThemeProvider } from '@/components/custom/theme-provider'
+
 const roboto = Roboto({
-  weight: ["400", "500", "700"],
+  weight: ['400', '500', '700'],
   variable: '--font-roboto',
   subsets: ['latin'],
   display: 'swap',
@@ -17,7 +19,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'Rafael.dev',
-  description: 'The personal website of Rafael Aguiar, a software engineer and tech enthusiast.',
+  description:
+    'The personal website of Rafael Aguiar, a software engineer and tech enthusiast.',
 }
 
 export default function RootLayout({
@@ -27,9 +30,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${roboto.variable} antialiased bg-slate-950 text-slate-200`}>
-        {children}
-      </body>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+      >
+        <body
+          className={`${inter.variable} ${roboto.variable} antialiased bg-slate-950 text-slate-200`}
+        >
+          {children}
+        </body>
+      </ThemeProvider>
     </html>
   )
 }

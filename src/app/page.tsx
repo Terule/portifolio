@@ -69,7 +69,7 @@ export default function Home() {
       <header className="fixed top-0 w-full border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-md z-50">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-4 md:px-6 py-4">
           <div className="font-roboto font-bold text-lg md:text-xl tracking-tight text-slate-100 truncate mr-4">
-            Rafael<span className="bg-linear-to-r from-cyan-400 to-blue-600">.dev.br</span>
+            Rafael<span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-600">.dev.br</span>
           </div>
 
           <nav className="flex gap-1 md:gap-2 shrink-0">
