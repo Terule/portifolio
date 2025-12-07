@@ -16,14 +16,14 @@ import { Button } from '@/components/ui/button'
 
 export default function Home() {
   const techStack = [
-    { name: 'Next.js', icon: SiNextdotjs, color: 'white' },
-    { name: 'React', icon: SiReact, color: '#61DAFB' },
-    { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
-    { name: 'Fastify', icon: SiFastify, color: '#FF4A00' },
-    { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
-    { name: 'PowerShell', icon: SiPowers, color: '#012456' },
-    { name: 'n8n', icon: SiN8N, color: '#FF470F' },
-    { name: 'PostgreSQL', icon: SiPostgresql, color: '#336791' },
+    { name: 'Next.js', icon: SiNextdotjs, color: 'nextjs' },
+    { name: 'React', icon: SiReact, color: 'react' },
+    { name: 'TypeScript', icon: SiTypescript, color: 'typescript' },
+    { name: 'Fastify', icon: SiFastify, color: 'fastify' },
+    { name: 'Node.js', icon: SiNodedotjs, color: 'nodejs' },
+    { name: 'PowerShell', icon: SiPowers, color: 'powershell' },
+    { name: 'n8n', icon: SiN8N, color: 'n8n' },
+    { name: 'PostgreSQL', icon: SiPostgresql, color: 'postgresql' },
   ]
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 selection:bg-cyan-500/30">
@@ -89,7 +89,9 @@ export default function Home() {
                 key={tech.name}
               >
                 {/* Renderiza o componente do ícone dinamicamente */}
-                <tech.icon className={`text-slate-500 group-hover:text-[${tech.color}] transition-colors`} />
+                <tech.icon
+                  className={`text-slate-500 group-hover:text-[var(--color-${tech.color})] transition-colors`}
+                />
                 {tech.name}
               </div>
             ))}

@@ -9,6 +9,17 @@
 
   /* Cria uma nova utilidade 'font-roboto' para usar onde quiser */
   --font-roboto: var(--font-roboto), sans-serif;
+
+  /* Defina outras variáveis de tema conforme necessário */
+  --color-nextjs: #000000;
+  --color-nextjs-foreground: #FFFFFF;
+  --color-react: #61DAFB;
+  --color-typescript: #3178C6;
+  --color-fastify: #FF4A00;
+  --color-nodejs: #339933;
+  --color-powershell: #012456;
+  --color-n8n: #FF470F;
+  --color-postgresql: #336791;
 }
 
 @theme inline {
