@@ -29,12 +29,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-      >
+    <html className="scroll-smooth" lang="en">
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <body
           className={`${inter.variable} ${roboto.variable} antialiased bg-slate-950 text-slate-200`}
         >

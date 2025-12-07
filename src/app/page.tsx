@@ -43,15 +43,14 @@ export default function Home() {
     { name: 'Node.js', icon: SiNodedotjs },
     { name: 'Express', icon: SiExpress },
     { name: 'Fastify', icon: SiFastify },
-    { name: 'PowerShell', icon: SiPowers },
-    { name: 'n8n', icon: SiN8N },
     { name: 'Biome', icon: SiBiome },
     { name: 'Prisma', icon: SiPrisma },
     { name: 'PostgreSQL', icon: SiPostgresql },
     { name: 'MySQL', icon: SiMysql },
     { name: 'Git', icon: SiGit },
     { name: 'GitHub', icon: SiGithub },
-
+    { name: 'PowerShell', icon: SiPowers },
+    { name: 'n8n', icon: SiN8N },
   ]
 
   const projects = [
