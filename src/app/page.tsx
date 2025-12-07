@@ -90,7 +90,7 @@ export default function Home() {
               >
                 {/* Renderiza o componente do ícone dinamicamente */}
                 <tech.icon
-                  className={`text-slate-500 group-hover:text-[var(--color-${tech.color})] transition-colors`}
+                  className={`text-slate-500 group-hover:text-${tech.color} transition-colors`}
                 />
                 {tech.name}
               </div>
