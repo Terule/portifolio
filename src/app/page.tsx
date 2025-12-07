@@ -19,7 +19,8 @@ import {
   SiReact,
   SiShadcnui,
   SiTailwindcss,
-  SiTypescript
+  SiTypescript,
+  SiZod
 } from 'react-icons/si'
 
 import ProjectCard from '@/components/custom/project-card'
@@ -44,6 +45,7 @@ export default function Home() {
     { name: 'Express', icon: SiExpress },
     { name: 'Fastify', icon: SiFastify },
     { name: 'Biome', icon: SiBiome },
+    { name: 'Zod', icon: SiZod },
     { name: 'Prisma', icon: SiPrisma },
     { name: 'PostgreSQL', icon: SiPostgresql },
     { name: 'MySQL', icon: SiMysql },
