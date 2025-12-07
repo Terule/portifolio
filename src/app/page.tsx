@@ -1,20 +1,22 @@
 import Link from 'next/link'
 import {
+  SiBiome,
   SiFastify,
   SiGithub,
+  SiGmail,
   SiLinkedin,
+  SiMaterialdesign,
+  SiMysql,
   SiN8N,
   SiNextdotjs,
   SiNodedotjs,
   SiPostgresql,
   SiPowers,
-  SiReact,
-  SiTypescript,
-  SiBiome,
   SiPrisma,
+  SiReact,
   SiShadcnui,
   SiTailwindcss,
-  SiMaterialdesign
+  SiTypescript,
 } from 'react-icons/si'
 
 import ProjectCard from '@/components/custom/project-card'
@@ -41,6 +43,7 @@ export default function Home() {
     { name: 'Shadcn UI', icon: SiShadcnui },
     { name: 'Tailwind CSS', icon: SiTailwindcss },
     { name: 'Material UI', icon: SiMaterialdesign },
+    { name: 'MySQL', icon: SiMysql },
   ]
 
   const projects = [
@@ -58,15 +61,6 @@ export default function Home() {
       ],
     },
     {
-      title: 'IT Ops Automation',
-      description:
-        'Suite of scripts and workflows to automate user onboarding and AD auditing.',
-      techs: [
-        { name: 'PowerShell', icon: SiPowers },
-        { name: 'n8n', icon: SiN8N },
-      ],
-    },
-    {
       title: 'Portfolio V1',
       description:
         'This personal website, built with modern frontend best practices and performance.',
@@ -78,6 +72,15 @@ export default function Home() {
         { name: 'Shadcn UI', icon: SiShadcnui },
       ],
     },
+    {
+      title: 'IT Ops Automation',
+      description:
+        'Suite of scripts and workflows to automate user onboarding and AD auditing.',
+      techs: [
+        { name: 'PowerShell', icon: SiPowers },
+        { name: 'n8n', icon: SiN8N },
+      ],
+    },
   ]
 
   return (
@@ -85,7 +88,10 @@ export default function Home() {
       <header className="fixed top-0 w-full border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-md z-50">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-4 md:px-6 py-4">
           <div className="font-roboto font-bold text-lg md:text-xl tracking-tight text-slate-100 truncate mr-4">
-            Rafael<span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-600">.dev.br</span>
+            Rafael
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-600">
+              .dev.br
+            </span>
           </div>
 
           <nav className="flex gap-1 md:gap-2 shrink-0">
@@ -108,10 +114,23 @@ export default function Home() {
               size="sm"
               variant="ghost"
             >
-              <Link href="https://linkedin.com/in/aguiar_fael" target="_blank">
+              <Link href="https://linkedin.com/in/aguiar-fael" target="_blank">
                 <SiLinkedin className="mr-2 h-4 w-4" />
                 <span className="hidden md:inline">LinkedIn</span>
                 <span className="inline md:hidden">In</span>
+              </Link>
+            </Button>
+
+            <Button
+              asChild
+              className="text-slate-400 hover:text-cyan-400 hover:bg-slate-900 px-2 md:px-4"
+              size="sm"
+              variant="ghost"
+            >
+              <Link href="mailto:terule@gmail.com" target="_blank">
+                <SiGmail className="mr-2 h-4 w-4" />
+                <span className="hidden md:inline">Email</span>
+                <span className="inline md:hidden">Mail</span>
               </Link>
             </Button>
           </nav>
@@ -121,15 +140,16 @@ export default function Home() {
       <main className="mx-auto max-w-3xl px-6 pt-28 md:pt-32 pb-20">
         <section className="mb-12 md:mb-16 space-y-6">
           <h1 className="font-roboto text-3xl md:text-5xl font-extrabold tracking-tight text-slate-100">
-            Software Engineer & <br />
+            Full-Stack Developer & <br />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-600">
-              Operations Specialist
+              IT Operations Expert
             </span>
           </h1>
           <p className="text-base md:text-lg text-slate-400 leading-relaxed max-w-xl">
-            Combining corporate infrastructure reliability with modern
-            development agility. Focused on automation, performance, and clean
-            code.
+            Leveraging <strong>10+ years of IT experience</strong> to build
+            robust, scalable applications. I bridge the gap between operational
+            stability and modern software agility, transforming complex
+            infrastructure needs into clean, efficient code.
           </p>
         </section>
 
@@ -141,10 +161,8 @@ export default function Home() {
             {techStack.map((tech) => (
               <div
                 className="group flex items-center gap-2 rounded-full bg-slate-900 border border-slate-800 px-4 py-2 text-xs md:text-sm font-medium text-slate-300 transition-all hover:-translate-y-0.5 hover:bg-slate-800 hover:border-slate-700 hover:shadow-lg cursor-default"
-                // Adicionei 'group' aqui para controlar o hover do filho
                 key={tech.name}
               >
-                {/* Ícone: Slate por padrão, Cyan no hover do grupo */}
                 <tech.icon className="text-base md:text-lg text-slate-500 group-hover:text-cyan-500 transition-colors duration-300" />
                 <span>{tech.name}</span>
               </div>
