@@ -67,68 +67,69 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 selection:bg-cyan-500/30">
       <header className="fixed top-0 w-full border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-md z-50">
-        <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
-          <div className="font-roboto font-bold text-xl tracking-tight text-slate-100">
+        <div className="mx-auto flex max-w-3xl items-center justify-between px-4 md:px-6 py-4">
+          <div className="font-roboto font-bold text-lg md:text-xl tracking-tight text-slate-100 truncate mr-4">
             Rafael Aguiar<span className="text-cyan-500">.dev</span>
           </div>
 
-          <nav className="flex gap-2">
+          <nav className="flex gap-1 md:gap-2 shrink-0">
             <Button
               asChild
-              className="text-slate-400 hover:text-cyan-400 hover:bg-slate-900"
+              className="text-slate-400 hover:text-cyan-400 hover:bg-slate-900 px-2 md:px-4"
               size="sm"
               variant="ghost"
             >
               <Link href="https://github.com/Terule" target="_blank">
                 <SiGithub className="mr-2 h-4 w-4" />
-                GitHub
+                <span className="hidden md:inline">GitHub</span>
+                <span className="inline md:hidden">Git</span>
               </Link>
             </Button>
 
             <Button
               asChild
-              className="text-slate-400 hover:text-cyan-400 hover:bg-slate-900"
+              className="text-slate-400 hover:text-cyan-400 hover:bg-slate-900 px-2 md:px-4"
               size="sm"
               variant="ghost"
             >
               <Link href="https://linkedin.com/in/aguiar_fael" target="_blank">
                 <SiLinkedin className="mr-2 h-4 w-4" />
-                LinkedIn
+                <span className="hidden md:inline">LinkedIn</span>
+                <span className="inline md:hidden">In</span>
               </Link>
             </Button>
           </nav>
         </div>
       </header>
 
-      <main className="mx-auto max-w-3xl px-6 pt-32 pb-20">
-        <section className="mb-16 space-y-6">
-          <h1 className="font-roboto text-4xl md:text-5xl font-extrabold tracking-tight text-slate-100">
+      <main className="mx-auto max-w-3xl px-6 pt-28 md:pt-32 pb-20">
+        <section className="mb-12 md:mb-16 space-y-6">
+          <h1 className="font-roboto text-3xl md:text-5xl font-extrabold tracking-tight text-slate-100">
             Software Engineer & <br />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-600">
               Operations Specialist
             </span>
           </h1>
-          <p className="text-lg text-slate-400 leading-relaxed max-w-xl">
+          <p className="text-base md:text-lg text-slate-400 leading-relaxed max-w-xl">
             Combining corporate infrastructure reliability with modern
             development agility. Focused on automation, performance, and clean
             code.
           </p>
         </section>
 
-        <section className="mb-20">
+        <section className="mb-16 md:mb-20">
           <h2 className="font-roboto mb-6 text-xs font-bold uppercase tracking-widest text-slate-500">
             Main Tech Stack
           </h2>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2 md:gap-3">
             {techStack.map((tech) => (
               <div
-                className="flex items-center gap-2 rounded-full bg-slate-900 border border-slate-800 px-4 py-2 text-sm font-medium text-slate-300 transition-all hover:-translate-y-0.5 hover:bg-slate-800 hover:border-slate-700 hover:shadow-lg cursor-default"
-                // Container "Pill": Borda, Fundo e Arredondamento aplicados aqui
+                className="group flex items-center gap-2 rounded-full bg-slate-900 border border-slate-800 px-4 py-2 text-xs md:text-sm font-medium text-slate-300 transition-all hover:-translate-y-0.5 hover:bg-slate-800 hover:border-slate-700 hover:shadow-lg cursor-default"
+                // Adicionei 'group' aqui para controlar o hover do filho
                 key={tech.name}
               >
-                {/* Ícone: Apenas tamanho e cor (ciano para destaque sutil) */}
-                <tech.icon className="text-lg text-cyan-500" />
-
+                {/* Ícone: Slate por padrão, Cyan no hover do grupo */}
+                <tech.icon className="text-base md:text-lg text-slate-500 group-hover:text-cyan-500 transition-colors duration-300" />
                 <span>{tech.name}</span>
               </div>
             ))}
@@ -137,7 +138,7 @@ export default function Home() {
 
         <section>
           <div className="flex items-center gap-3 mb-8">
-            <h2 className="font-roboto text-2xl font-bold text-slate-100">
+            <h2 className="font-roboto text-xl md:text-2xl font-bold text-slate-100">
               What I'm building
             </h2>
             <span className="relative flex h-3 w-3">
@@ -146,7 +147,7 @@ export default function Home() {
             </span>
           </div>
 
-          <div className="px-8">
+          <div className="px-0 md:px-8">
             <Carousel
               className="w-full"
               opts={{
@@ -160,9 +161,9 @@ export default function Home() {
                     className="md:basis-1/2 lg:basis-1/2"
                     key={project.title}
                   >
-                    <div className="h-full flex flex-col justify-between rounded-xl border border-slate-800 bg-slate-900/40 p-6 hover:border-cyan-500/40 transition-all group">
+                    <div className="h-full flex flex-col justify-between rounded-xl border border-slate-800 bg-slate-900/40 p-6 hover:border-cyan-500/40 transition-all group select-none">
                       <div>
-                        <h3 className="font-roboto text-xl font-bold text-slate-200 group-hover:text-cyan-400 transition-colors">
+                        <h3 className="font-roboto text-lg md:text-xl font-bold text-slate-200 group-hover:text-cyan-400 transition-colors">
                           {project.title}
                         </h3>
                         <p className="mt-3 text-sm text-slate-400 leading-relaxed">
@@ -173,7 +174,7 @@ export default function Home() {
                       <div className="mt-6 flex flex-wrap gap-2">
                         {project.techs.map((t) => (
                           <span
-                            className="inline-flex items-center gap-1 text-xs font-mono text-slate-500 bg-slate-950/50 px-2 py-1 rounded"
+                            className="inline-flex items-center gap-1 text-[10px] md:text-xs font-mono text-slate-500 bg-slate-950/50 px-2 py-1 rounded"
                             key={t.name}
                           >
                             <t.icon className="text-cyan-500/70" /> {t.name}
@@ -184,8 +185,8 @@ export default function Home() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="border-slate-800 bg-slate-900 text-slate-400 hover:text-cyan-400 hover:border-cyan-500" />
-              <CarouselNext className="border-slate-800 bg-slate-900 text-slate-400 hover:text-cyan-400 hover:border-cyan-500" />
+              <CarouselPrevious className="hidden md:flex border-slate-800 bg-slate-900 text-slate-400 hover:text-cyan-400 hover:border-cyan-500" />
+              <CarouselNext className="hidden md:flex border-slate-800 bg-slate-900 text-slate-400 hover:text-cyan-400 hover:border-cyan-500" />
             </Carousel>
           </div>
         </section>
