@@ -69,7 +69,7 @@ export default function Home() {
       <header className="fixed top-0 w-full border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-md z-50">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
           <div className="font-roboto font-bold text-xl tracking-tight text-slate-100">
-            Fael Aguiar<span className="text-cyan-500">.dev</span>
+            Rafael Aguiar<span className="text-cyan-500">.dev</span>
           </div>
 
           <nav className="flex gap-2">
@@ -122,10 +122,12 @@ export default function Home() {
           <div className="flex flex-wrap gap-3">
             {techStack.map((tech) => (
               <div
-                className="flex items-center gap-2 rounded-full bg-slate-900 border border-slate-800 px-5 py-2 text-sm font-medium text-slate-300 transition-all hover:-translate-y-0.5 hover:bg-slate-800 hover:border-slate-700 hover:shadow-lg cursor-default"
+                className="flex items-center gap-2 rounded-full bg-slate-900 border border-slate-800 px-4 py-2 text-sm font-medium text-slate-300 transition-all hover:-translate-y-0.5 hover:bg-slate-800 hover:border-slate-700 hover:shadow-lg cursor-default"
+                // Container "Pill": Borda, Fundo e Arredondamento aplicados aqui
                 key={tech.name}
               >
-                <tech.icon className="px-3 py-1 bg-slate-900 border border-slate-800 rounded-full text-xs text-cyan-500 font-mono" />
+                {/* Ícone: Apenas tamanho e cor (ciano para destaque sutil) */}
+                <tech.icon className="text-lg text-cyan-500" />
 
                 <span>{tech.name}</span>
               </div>
@@ -174,7 +176,7 @@ export default function Home() {
                             className="inline-flex items-center gap-1 text-xs font-mono text-slate-500 bg-slate-950/50 px-2 py-1 rounded"
                             key={t.name}
                           >
-                            <t.icon /> {t.name}
+                            <t.icon className="text-cyan-500/70" /> {t.name}
                           </span>
                         ))}
                       </div>
