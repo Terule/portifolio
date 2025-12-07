@@ -10,7 +10,8 @@ import {
   SiPowers,
   SiReact,
   SiTypescript,
-  SiBiome
+  SiBiome,
+  SiPrisma
 } from 'react-icons/si'
 
 import ProjectCard from '@/components/custom/project-card'
@@ -32,6 +33,8 @@ export default function Home() {
     { name: 'PowerShell', icon: SiPowers },
     { name: 'n8n', icon: SiN8N },
     { name: 'PostgreSQL', icon: SiPostgresql },
+    { name: 'Prisma', icon: SiPrisma },
+    { name: 'Biome', icon: SiBiome },
   ]
 
   const projects = [
@@ -41,8 +44,9 @@ export default function Home() {
         'Personal finance management platform focused on performance and expense tracking.',
       techs: [
         { name: 'Next.js', icon: SiNextdotjs },
-        { name: 'PostgreSQL', icon: SiPostgresql },
         { name: 'Biome', icon: SiBiome },
+        { name: 'Prisma', icon: SiPrisma },
+        { name: 'PostgreSQL', icon: SiPostgresql },
       ],
     },
     {
