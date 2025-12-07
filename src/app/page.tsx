@@ -12,11 +12,11 @@ import {
   SiTypescript,
 } from 'react-icons/si'
 
+import ProjectCard from '@/components/custom/project-card'
 import { Button } from '@/components/ui/button'
 import {
   Carousel,
   CarouselContent,
-  CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
@@ -69,7 +69,7 @@ export default function Home() {
       <header className="fixed top-0 w-full border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-md z-50">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-4 md:px-6 py-4">
           <div className="font-roboto font-bold text-lg md:text-xl tracking-tight text-slate-100 truncate mr-4">
-            Rafael Aguiar<span className="text-cyan-500">.dev</span>
+            Rafael<span className="bg-linear-to-r from-cyan-400 to-blue-600">.dev.br</span>
           </div>
 
           <nav className="flex gap-1 md:gap-2 shrink-0">
@@ -157,32 +157,12 @@ export default function Home() {
             >
               <CarouselContent>
                 {projects.map((project) => (
-                  <CarouselItem
-                    className="md:basis-1/2 lg:basis-1/2"
+                  <ProjectCard
+                    description={project.description}
                     key={project.title}
-                  >
-                    <div className="h-full flex flex-col justify-between rounded-xl border border-slate-800 bg-slate-900/40 p-6 hover:border-cyan-500/40 transition-all group select-none">
-                      <div>
-                        <h3 className="font-roboto text-lg md:text-xl font-bold text-slate-200 group-hover:text-cyan-400 transition-colors">
-                          {project.title}
-                        </h3>
-                        <p className="mt-3 text-sm text-slate-400 leading-relaxed">
-                          {project.description}
-                        </p>
-                      </div>
-
-                      <div className="mt-6 flex flex-wrap gap-2">
-                        {project.techs.map((t) => (
-                          <span
-                            className="inline-flex items-center gap-1 text-[10px] md:text-xs font-mono text-slate-500 bg-slate-950/50 px-2 py-1 rounded"
-                            key={t.name}
-                          >
-                            <t.icon className="text-cyan-500/70" /> {t.name}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </CarouselItem>
+                    techs={project.techs}
+                    title={project.title}
+                  />
                 ))}
               </CarouselContent>
               <CarouselPrevious className="hidden md:flex border-slate-800 bg-slate-900 text-slate-400 hover:text-cyan-400 hover:border-cyan-500" />
