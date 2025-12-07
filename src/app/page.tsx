@@ -11,7 +11,10 @@ import {
   SiReact,
   SiTypescript,
   SiBiome,
-  SiPrisma
+  SiPrisma,
+  SiShadcnui,
+  SiTailwindcss,
+  SiMaterialdesign
 } from 'react-icons/si'
 
 import ProjectCard from '@/components/custom/project-card'
@@ -35,6 +38,9 @@ export default function Home() {
     { name: 'PostgreSQL', icon: SiPostgresql },
     { name: 'Prisma', icon: SiPrisma },
     { name: 'Biome', icon: SiBiome },
+    { name: 'Shadcn UI', icon: SiShadcnui },
+    { name: 'Tailwind CSS', icon: SiTailwindcss },
+    { name: 'Material UI', icon: SiMaterialdesign },
   ]
 
   const projects = [
@@ -46,6 +52,8 @@ export default function Home() {
         { name: 'Next.js', icon: SiNextdotjs },
         { name: 'Biome', icon: SiBiome },
         { name: 'Prisma', icon: SiPrisma },
+        { name: 'Shadcn UI', icon: SiShadcnui },
+        { name: 'Tailwind CSS', icon: SiTailwindcss },
         { name: 'PostgreSQL', icon: SiPostgresql },
       ],
     },
@@ -66,6 +74,8 @@ export default function Home() {
         { name: 'Next.js', icon: SiNextdotjs },
         { name: 'React', icon: SiReact },
         { name: 'Biome', icon: SiBiome },
+        { name: 'Tailwind CSS', icon: SiTailwindcss },
+        { name: 'Shadcn UI', icon: SiShadcnui },
       ],
     },
   ]
