@@ -1,9 +1,12 @@
 import Link from 'next/link'
 import {
   SiBiome,
+  SiExpress,
   SiFastify,
+  SiGit,
   SiGithub,
   SiGmail,
+  SiJavascript,
   SiLinkedin,
   SiMaterialdesign,
   SiMysql,
@@ -16,7 +19,7 @@ import {
   SiReact,
   SiShadcnui,
   SiTailwindcss,
-  SiTypescript,
+  SiTypescript
 } from 'react-icons/si'
 
 import ProjectCard from '@/components/custom/project-card'
@@ -25,25 +28,30 @@ import {
   Carousel,
   CarouselContent,
   CarouselNext,
-  CarouselPrevious,
+  CarouselPrevious
 } from '@/components/ui/carousel'
 
 export default function Home() {
   const techStack = [
     { name: 'Next.js', icon: SiNextdotjs },
     { name: 'React', icon: SiReact },
-    { name: 'TypeScript', icon: SiTypescript },
-    { name: 'Fastify', icon: SiFastify },
-    { name: 'Node.js', icon: SiNodedotjs },
-    { name: 'PowerShell', icon: SiPowers },
-    { name: 'n8n', icon: SiN8N },
-    { name: 'PostgreSQL', icon: SiPostgresql },
-    { name: 'Prisma', icon: SiPrisma },
-    { name: 'Biome', icon: SiBiome },
     { name: 'Shadcn UI', icon: SiShadcnui },
     { name: 'Tailwind CSS', icon: SiTailwindcss },
     { name: 'Material UI', icon: SiMaterialdesign },
+    { name: 'JavaScript', icon: SiJavascript },
+    { name: 'TypeScript', icon: SiTypescript },
+    { name: 'Node.js', icon: SiNodedotjs },
+    { name: 'Express', icon: SiExpress },
+    { name: 'Fastify', icon: SiFastify },
+    { name: 'PowerShell', icon: SiPowers },
+    { name: 'n8n', icon: SiN8N },
+    { name: 'Biome', icon: SiBiome },
+    { name: 'Prisma', icon: SiPrisma },
+    { name: 'PostgreSQL', icon: SiPostgresql },
     { name: 'MySQL', icon: SiMysql },
+    { name: 'Git', icon: SiGit },
+    { name: 'GitHub', icon: SiGithub },
+
   ]
 
   const projects = [
