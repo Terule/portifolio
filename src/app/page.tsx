@@ -16,14 +16,14 @@ import { Button } from '@/components/ui/button'
 
 export default function Home() {
   const techStack = [
-    { name: 'Next.js', icon: SiNextdotjs, color: 'nextjs' },
-    { name: 'React', icon: SiReact, color: 'react' },
-    { name: 'TypeScript', icon: SiTypescript, color: 'typescript' },
-    { name: 'Fastify', icon: SiFastify, color: 'fastify' },
-    { name: 'Node.js', icon: SiNodedotjs, color: 'nodejs' },
-    { name: 'PowerShell', icon: SiPowers, color: 'powershell' },
-    { name: 'n8n', icon: SiN8N, color: 'n8n' },
-    { name: 'PostgreSQL', icon: SiPostgresql, color: 'postgresql' },
+    { name: 'Next.js', icon: SiNextdotjs },
+    { name: 'React', icon: SiReact },
+    { name: 'TypeScript', icon: SiTypescript },
+    { name: 'Fastify', icon: SiFastify },
+    { name: 'Node.js', icon: SiNodedotjs },
+    { name: 'PowerShell', icon: SiPowers },
+    { name: 'n8n', icon: SiN8N },
+    { name: 'PostgreSQL', icon: SiPostgresql },
   ]
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 selection:bg-cyan-500/30">
@@ -90,7 +90,7 @@ export default function Home() {
               >
                 {/* Renderiza o componente do ícone dinamicamente */}
                 <tech.icon
-                  className={`text-slate-500 group-hover:text-${tech.color} transition-colors`}
+                  className={"text-slate-500 group-hover:-text-cyan-500 transition-colors"}
                 />
                 {tech.name}
               </div>
