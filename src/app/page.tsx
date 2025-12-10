@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import {
   SiBiome,
   SiExpress,
@@ -20,16 +19,17 @@ import {
   SiShadcnui,
   SiTailwindcss,
   SiTypescript,
-  SiZod
+  SiZod,
 } from 'react-icons/si'
 
 import ProjectCard from '@/components/custom/project-card'
-import { Button } from '@/components/ui/button'
+import SmButton from '@/components/custom/sm-button'
+import StackBadge from '@/components/custom/stack-badge'
 import {
   Carousel,
   CarouselContent,
   CarouselNext,
-  CarouselPrevious
+  CarouselPrevious,
 } from '@/components/ui/carousel'
 
 export default function Home() {
@@ -104,44 +104,24 @@ export default function Home() {
           </div>
 
           <nav className="flex gap-1 md:gap-2 shrink-0">
-            <Button
-              asChild
-              className="text-slate-400 hover:text-cyan-400 hover:bg-slate-900 px-2 md:px-4"
-              size="sm"
-              variant="ghost"
-            >
-              <Link href="https://github.com/Terule" target="_blank">
-                <SiGithub className="mr-2 h-4 w-4" />
-                <span className="hidden md:inline">GitHub</span>
-                <span className="inline md:hidden">Git</span>
-              </Link>
-            </Button>
-
-            <Button
-              asChild
-              className="text-slate-400 hover:text-cyan-400 hover:bg-slate-900 px-2 md:px-4"
-              size="sm"
-              variant="ghost"
-            >
-              <Link href="https://linkedin.com/in/aguiar-fael" target="_blank">
-                <SiLinkedin className="mr-2 h-4 w-4" />
-                <span className="hidden md:inline">LinkedIn</span>
-                <span className="inline md:hidden">In</span>
-              </Link>
-            </Button>
-
-            <Button
-              asChild
-              className="text-slate-400 hover:text-cyan-400 hover:bg-slate-900 px-2 md:px-4"
-              size="sm"
-              variant="ghost"
-            >
-              <Link href="mailto:terule@gmail.com" target="_blank">
-                <SiGmail className="mr-2 h-4 w-4" />
-                <span className="hidden md:inline">Email</span>
-                <span className="inline md:hidden">Mail</span>
-              </Link>
-            </Button>
+            <SmButton
+              href="https://github.com/Terule"
+              icon={SiGithub}
+              label="GitHub"
+              shortLabel="Git"
+            />
+            <SmButton
+              href="https://linkedin.com/in/aguiar-fael"
+              icon={SiLinkedin}
+              label="LinkedIn"
+              shortLabel="In"
+            />
+            <SmButton
+              href="mailto:terule@gmail.com"
+              icon={SiGmail}
+              label="Email"
+              shortLabel="Mail"
+            />
           </nav>
         </div>
       </header>
@@ -171,13 +151,7 @@ export default function Home() {
           </h2>
           <div className="flex flex-wrap gap-2 md:gap-3">
             {techStack.map((tech) => (
-              <div
-                className="group flex items-center gap-2 rounded-full bg-slate-900 border border-slate-800 px-4 py-2 text-xs md:text-sm font-medium text-slate-300 transition-all hover:-translate-y-0.5 hover:bg-slate-800 hover:border-slate-700 hover:shadow-lg cursor-default"
-                key={tech.name}
-              >
-                <tech.icon className="text-base md:text-lg text-slate-500 group-hover:text-cyan-500 transition-colors duration-300" />
-                <span>{tech.name}</span>
-              </div>
+              <StackBadge icon={tech.icon} key={tech.name} name={tech.name} />
             ))}
           </div>
         </section>
