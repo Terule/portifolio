@@ -57,6 +57,18 @@ export default function Home() {
 
   const projects = [
     {
+      title: 'DL Manager',
+      description:
+        'Microsoft 365 distribution list manager with owner-based access control and bulk member operations.',
+      techs: [
+        { name: 'Next.js', icon: SiNextdotjs },
+        { name: 'TypeScript', icon: SiTypescript },
+        { name: 'Shadcn UI', icon: SiShadcnui },
+        { name: 'Tailwind CSS', icon: SiTailwindcss },
+        { name: 'Biome', icon: SiBiome },
+      ],
+    },
+    {
       title: 'Finance App',
       description:
         'Personal finance management platform focused on performance and expense tracking.',
