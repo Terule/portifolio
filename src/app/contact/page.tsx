@@ -147,7 +147,9 @@ export default function ContactPage() {
             <div className="mb-4 inline-flex rounded-xl border border-cyan-500/35 bg-cyan-500/10 p-2.5 text-cyan-300">
               <SiGmail className="h-5 w-5" />
             </div>
-            <p className="font-roboto text-xl font-bold text-slate-100">Email</p>
+            <p className="font-roboto text-xl font-bold text-slate-100">
+              Email
+            </p>
             <p className="mt-2 text-sm text-slate-300">
               Share scope, timeline, and context to kick off.
             </p>
@@ -165,7 +167,9 @@ export default function ContactPage() {
             <div className="mb-4 inline-flex rounded-xl border border-cyan-500/35 bg-cyan-500/10 p-2.5 text-cyan-300">
               <SiLinkedin className="h-5 w-5" />
             </div>
-            <p className="font-roboto text-xl font-bold text-slate-100">LinkedIn</p>
+            <p className="font-roboto text-xl font-bold text-slate-100">
+              LinkedIn
+            </p>
             <p className="mt-2 text-sm text-slate-300">
               Connect for long-term collaboration and project updates.
             </p>
@@ -183,7 +187,9 @@ export default function ContactPage() {
             <div className="mb-4 inline-flex rounded-xl border border-cyan-500/35 bg-cyan-500/10 p-2.5 text-cyan-300">
               <SiGithub className="h-5 w-5" />
             </div>
-            <p className="font-roboto text-xl font-bold text-slate-100">GitHub</p>
+            <p className="font-roboto text-xl font-bold text-slate-100">
+              GitHub
+            </p>
             <p className="mt-2 text-sm text-slate-300">
               Review code quality, architecture style, and build standards.
             </p>
