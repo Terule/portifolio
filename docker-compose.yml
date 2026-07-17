@@ -27,8 +27,8 @@ services:
         condition: service_healthy
       seaweedfs-s3:
         condition: service_started
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     restart: unless-stopped
 
   postgres:
@@ -38,8 +38,6 @@ services:
       POSTGRES_DB: ${DATABASE_NAME:-portifolio}
       POSTGRES_USER: ${DATABASE_USER:-portifolio}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-portifolio}
-    ports:
-      - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./docker/init.sql:/docker-entrypoint-initdb.d/001-init.sql:ro
@@ -53,8 +51,6 @@ services:
     image: chrislusf/seaweedfs:3.80
     container_name: portifolio-seaweedfs-master
     command: "master"
-    ports:
-      - "9333:9333"
     volumes:
       - seaweed_master_data:/data
 
@@ -64,8 +60,6 @@ services:
     command: "volume -mserver=seaweedfs-master:9333 -port=8080 -dir=/data"
     depends_on:
       - seaweedfs-master
-    ports:
-      - "8080:8080"
     volumes:
       - seaweed_volume_data:/data
 
@@ -76,9 +70,6 @@ services:
     depends_on:
       - seaweedfs-master
       - seaweedfs-volume
-    ports:
-      - "8888:8888"
-      - "18888:18888"
 
   seaweedfs-s3:
     image: chrislusf/seaweedfs:3.80
@@ -86,8 +77,7 @@ services:
     command: "s3 -filer=seaweedfs-filer:8888 -port=8333"
     depends_on:
       - seaweedfs-filer
-    ports:
-      - "8333:8333"
+
 
 volumes:
   postgres_data:
