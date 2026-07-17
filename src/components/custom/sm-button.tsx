@@ -15,7 +15,7 @@ function SmButton({ href, icon, label, shortLabel }: SmButtonProps) {
   return (
     <Button
       asChild
-      className="text-slate-400 hover:text-cyan-400 hover:bg-slate-900 px-2 md:px-4"
+      className="rounded-full border border-transparent px-2 text-slate-400 transition-all hover:border-slate-700 hover:bg-slate-900 hover:text-cyan-300 md:px-4"
       size="sm"
       variant="ghost"
     >
