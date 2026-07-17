@@ -122,7 +122,139 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+.morph-frame {
+  position: relative;
+  width: 100%;
+  max-width: 20rem;
+  margin: 0 auto;
+  aspect-ratio: 4 / 5;
+}
+
+.morph-outline {
+  position: absolute;
+  inset: 0;
+  border: 1px solid color-mix(in srgb, rgb(6 182 212) 40%, transparent);
+  border-radius: 46% 54% 58% 42% / 43% 51% 49% 57%;
+  animation: morph-outline 10s ease-in-out infinite alternate;
+}
+
+.morph-image-wrap {
+  position: absolute;
+  inset: 0.5rem;
+  overflow: hidden;
+  border-radius: 41% 59% 52% 48% / 48% 44% 56% 52%;
+  animation: morph-shape 9s ease-in-out infinite alternate;
+  will-change: border-radius;
+}
+
+.morph-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.15) contrast(1.07);
+  transform: scale(1.04);
+  animation: morph-image 12s ease-in-out infinite alternate;
+}
+
+.morph-shade {
+  position: absolute;
+  inset: 0;
+  border-radius: 42% 58% 49% 51% / 47% 41% 59% 53%;
+  background:
+    radial-gradient(circle at 70% 15%, rgb(6 182 212 / 30%), transparent 42%),
+    radial-gradient(circle at 30% 80%, rgb(14 116 144 / 32%), transparent 45%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: morph-overlay 8s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+.morph-grain {
+  position: absolute;
+  inset: 0;
+  border-radius: 44% 56% 50% 50% / 45% 48% 52% 55%;
+  background-image: radial-gradient(
+    rgb(148 163 184 / 15%) 0.6px,
+    transparent 0.6px
+  );
+  background-size: 3px 3px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.admin-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(51 65 85);
+  background: rgb(2 6 23 / 80%);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.875rem;
+  color: rgb(226 232 240);
+  outline: none;
+}
+
+.admin-input:focus {
+  border-color: rgb(6 182 212 / 60%);
+  box-shadow: 0 0 0 2px rgb(6 182 212 / 20%);
+}
+
+@keyframes morph-shape {
+  0% {
+    border-radius: 41% 59% 52% 48% / 48% 44% 56% 52%;
+  }
+  50% {
+    border-radius: 55% 45% 46% 54% / 42% 57% 43% 58%;
+  }
+  100% {
+    border-radius: 47% 53% 61% 39% / 56% 47% 53% 44%;
+  }
+}
+
+@keyframes morph-outline {
+  0% {
+    border-radius: 46% 54% 58% 42% / 43% 51% 49% 57%;
+    transform: rotate(-1deg);
+  }
+  100% {
+    border-radius: 57% 43% 45% 55% / 54% 45% 55% 46%;
+    transform: rotate(1deg);
+  }
+}
+
+@keyframes morph-image {
+  0% {
+    transform: scale(1.04) translateY(0%);
+  }
+  100% {
+    transform: scale(1.1) translateY(-2%);
+  }
+}
+
+@keyframes morph-overlay {
+  0% {
+    opacity: 0.5;
+    transform: rotate(0deg);
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.45;
+    transform: rotate(8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .morph-outline,
+  .morph-image-wrap,
+  .morph-image,
+  .morph-shade {
+    animation: none;
   }
 }

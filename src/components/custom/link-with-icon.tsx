@@ -7,7 +7,7 @@ interface LinkWithIconProps extends Omit<ComponentProps<typeof Link>, 'href'> {
   href: string
   label: string
   shortLabel: string
-  iconPosition?: 'left' | 'right',
+  iconPosition?: 'left' | 'right'
   className?: string
 }
 

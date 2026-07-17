@@ -1,0 +1,95 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: portifolio-app
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+      BETTER_AUTH_URL: ${BETTER_AUTH_URL:-http://localhost:3000}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-replace-with-32-char-secret}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@example.com}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-change-me-now}
+      DATABASE_URL: postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+      DATABASE_HOST: ${DATABASE_HOST:-postgres}
+      DATABASE_PORT: ${DATABASE_PORT:-5432}
+      DATABASE_NAME: ${DATABASE_NAME:-portifolio}
+      DATABASE_USER: ${DATABASE_USER:-portifolio}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-portifolio}
+      S3_ENDPOINT: http://seaweedfs-s3:8333
+      S3_REGION: ${S3_REGION:-us-east-1}
+      S3_BUCKET: ${S3_BUCKET:-portfolio-assets}
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY:-seaweedfs}
+      S3_SECRET_KEY: ${S3_SECRET_KEY:-seaweedfs-secret}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      seaweedfs-s3:
+        condition: service_started
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: portifolio-postgres
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME:-portifolio}
+      POSTGRES_USER: ${DATABASE_USER:-portifolio}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-portifolio}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/001-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USER:-portifolio} -d ${DATABASE_NAME:-portifolio}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  seaweedfs-master:
+    image: chrislusf/seaweedfs:3.80
+    container_name: portifolio-seaweedfs-master
+    command: "master"
+    ports:
+      - "9333:9333"
+    volumes:
+      - seaweed_master_data:/data
+
+  seaweedfs-volume:
+    image: chrislusf/seaweedfs:3.80
+    container_name: portifolio-seaweedfs-volume
+    command: "volume -mserver=seaweedfs-master:9333 -port=8080 -dir=/data"
+    depends_on:
+      - seaweedfs-master
+    ports:
+      - "8080:8080"
+    volumes:
+      - seaweed_volume_data:/data
+
+  seaweedfs-filer:
+    image: chrislusf/seaweedfs:3.80
+    container_name: portifolio-seaweedfs-filer
+    command: "filer -master=seaweedfs-master:9333"
+    depends_on:
+      - seaweedfs-master
+      - seaweedfs-volume
+    ports:
+      - "8888:8888"
+      - "18888:18888"
+
+  seaweedfs-s3:
+    image: chrislusf/seaweedfs:3.80
+    container_name: portifolio-seaweedfs-s3
+    command: "s3 -filer=seaweedfs-filer:8888 -port=8333"
+    depends_on:
+      - seaweedfs-filer
+    ports:
+      - "8333:8333"
+
+volumes:
+  postgres_data:
+  seaweed_master_data:
+  seaweed_volume_data:

@@ -29,14 +29,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html className="scroll-smooth" lang="en">
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <body
-          className={`${inter.variable} ${roboto.variable} antialiased bg-slate-950 text-slate-200`}
-        >
+    <html className="scroll-smooth" lang="en" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${roboto.variable} antialiased bg-slate-950 text-slate-200`}
+      >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
-        </body>
-      </ThemeProvider>
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

@@ -1,0 +1,20 @@
+<svg width="768" height="960" viewBox="0 0 768 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="96" y1="64" x2="672" y2="896" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E1F35" />
+      <stop offset="1" stop-color="#122843" />
+    </linearGradient>
+    <linearGradient id="accent" x1="40" y1="80" x2="728" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE" stop-opacity="0.65" />
+      <stop offset="1" stop-color="#0EA5E9" stop-opacity="0.1" />
+    </linearGradient>
+  </defs>
+  <rect width="768" height="960" fill="url(#bg)" />
+  <circle cx="584" cy="186" r="218" fill="#0EA5E9" fill-opacity="0.14" />
+  <circle cx="178" cy="808" r="194" fill="#22D3EE" fill-opacity="0.12" />
+  <path d="M202 746C202 648.798 280.798 570 378 570H390C487.202 570 566 648.798 566 746V960H202V746Z" fill="#1E293B" />
+  <circle cx="384" cy="374" r="172" fill="#334155" />
+  <circle cx="384" cy="346" r="108" fill="#475569" />
+  <rect x="308" y="820" width="152" height="34" rx="17" fill="url(#accent)" />
+  <text x="384" y="856" text-anchor="middle" fill="#BAE6FD" font-family="Inter, sans-serif" font-size="28" font-weight="600">RAFAEL</text>
+</svg>
