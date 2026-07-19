@@ -1,23 +1,32 @@
 import { redirect } from 'next/navigation'
 
 import { isAdminAuthenticated } from '@/lib/admin-auth'
+import { getProfilePhotoUrl } from '@/lib/profile'
 import { getProjects } from '@/lib/projects'
 
 import {
   deleteProjectAction,
   logoutAdminAction,
+  saveProfilePhotoAction,
   saveProjectAction,
   setFeaturedProjectAction,
 } from './actions'
 
 import AdminCoverUploadField from '@/components/custom/admin-cover-upload-field'
 
-export default async function AdminPage() {
+export default async function AdminPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ edit?: string }>
+}) {
   if (!(await isAdminAuthenticated())) {
     redirect('/admin/login')
   }
 
   const projects = await getProjects()
+  const profilePhotoUrl = await getProfilePhotoUrl()
+  const { edit } = await searchParams
+  const editingProject = projects.find((project) => project.id === edit)
 
   return (
     <main className="min-h-screen bg-slate-950 px-6 py-20 text-slate-100">
@@ -41,44 +50,93 @@ export default async function AdminPage() {
         </div>
 
         <section className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-          <h2 className="font-roboto text-lg font-bold">
-            Create or Update Project
-          </h2>
+          <h2 className="font-roboto text-lg font-bold">Profile Photo</h2>
+          <p className="mt-1 text-sm text-slate-400">
+            Upload the portrait shown on the home page.
+          </p>
+
+          <form
+            action={saveProfilePhotoAction}
+            className="mt-4 max-w-xl space-y-4"
+          >
+            <AdminCoverUploadField
+              defaultValue={profilePhotoUrl ?? ''}
+              name="photoUrl"
+              placeholder="Profile photo URL (/images/... or S3 URL)"
+              type="profile"
+            />
+            <button
+              className="inline-flex rounded-xl bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-400"
+              type="submit"
+            >
+              Save profile photo
+            </button>
+          </form>
+        </section>
+
+        <section
+          className="mt-8 rounded-2xl border border-slate-800 bg-slate-900/60 p-5"
+          id="project-form"
+        >
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 className="font-roboto text-lg font-bold">
+              {editingProject
+                ? `Edit ${editingProject.title}`
+                : 'Create Project'}
+            </h2>
+            {editingProject ? (
+              <a
+                className="text-sm font-semibold text-cyan-300 hover:text-cyan-200"
+                href="/admin"
+              >
+                Cancel editing
+              </a>
+            ) : null}
+          </div>
 
           <form
             action={saveProjectAction}
             className="mt-4 grid gap-4 md:grid-cols-2"
           >
+            {editingProject ? (
+              <input name="id" type="hidden" value={editingProject.id} />
+            ) : (
+              <input
+                className="admin-input"
+                name="id"
+                placeholder="ID (leave empty to create)"
+              />
+            )}
             <input
               className="admin-input"
-              name="id"
-              placeholder="ID (leave empty to create)"
-            />
-            <input
-              className="admin-input"
+              defaultValue={editingProject?.title}
               name="title"
               placeholder="Title"
               required
             />
             <input
               className="admin-input"
+              defaultValue={editingProject?.subtitle ?? ''}
               name="subtitle"
               placeholder="Subtitle"
             />
             <input
               className="admin-input"
+              defaultValue={editingProject?.status}
               name="status"
               placeholder="Status"
               required
             />
             <input
               className="admin-input md:col-span-2"
+              defaultValue={editingProject?.description}
               name="description"
               placeholder="Description"
               required
             />
             <input
               className="admin-input"
+              defaultValue={editingProject?.displayOrder}
               min="0"
               name="displayOrder"
               placeholder="Display order"
@@ -86,21 +144,25 @@ export default async function AdminPage() {
             />
             <input
               className="admin-input"
+              defaultValue={editingProject?.tags.join(', ')}
               name="tagsCsv"
               placeholder="Tags comma separated"
             />
             <input
               className="admin-input"
+              defaultValue={editingProject?.githubUrl ?? ''}
               name="githubUrl"
               placeholder="GitHub URL"
             />
             <input
               className="admin-input"
+              defaultValue={editingProject?.liveUrl ?? ''}
               name="liveUrl"
               placeholder="Live URL"
             />
             <div className="md:col-span-2 space-y-2">
               <AdminCoverUploadField
+                defaultValue={editingProject?.coverImageUrl ?? ''}
                 name="coverImageUrl"
                 placeholder="Cover image URL (/images/... or S3 URL)"
                 type="projects"
@@ -108,7 +170,12 @@ export default async function AdminPage() {
             </div>
 
             <label className="inline-flex items-center gap-2 text-sm text-slate-300">
-              <input name="featured" type="checkbox" /> Featured
+              <input
+                defaultChecked={editingProject?.featured}
+                name="featured"
+                type="checkbox"
+              />{' '}
+              Featured
             </label>
 
             <div className="md:col-span-2">
@@ -116,7 +183,7 @@ export default async function AdminPage() {
                 className="inline-flex rounded-xl bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-400"
                 type="submit"
               >
-                Save project
+                {editingProject ? 'Update project' : 'Save project'}
               </button>
             </div>
           </form>
@@ -143,6 +210,12 @@ export default async function AdminPage() {
                   </div>
 
                   <div className="flex items-center gap-2">
+                    <a
+                      className="inline-flex rounded-lg border border-slate-700 px-3 py-1.5 text-xs font-semibold text-slate-200 transition-colors hover:border-cyan-500 hover:text-cyan-300"
+                      href={`/admin?edit=${project.id}#project-form`}
+                    >
+                      Edit
+                    </a>
                     {!project.featured ? (
                       <form action={setFeaturedProjectAction}>
                         <input name="id" type="hidden" value={project.id} />

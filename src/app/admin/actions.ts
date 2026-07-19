@@ -4,11 +4,23 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 import { clearAdminSession, isAdminAuthenticated } from '@/lib/admin-auth'
+import { updateProfilePhotoUrl } from '@/lib/profile'
 import {
   removeProject,
   setFeaturedProject,
   upsertProject,
 } from '@/lib/projects-admin'
+
+export async function saveProfilePhotoAction(formData: FormData) {
+  if (!(await isAdminAuthenticated())) {
+    redirect('/admin/login')
+  }
+
+  await updateProfilePhotoUrl(String(formData.get('photoUrl') ?? ''))
+
+  revalidatePath('/')
+  revalidatePath('/admin')
+}
 
 export async function saveProjectAction(formData: FormData) {
   if (!(await isAdminAuthenticated())) {

@@ -17,6 +17,12 @@ CREATE TABLE IF NOT EXISTS projects (
 CREATE INDEX IF NOT EXISTS idx_projects_featured ON projects (featured);
 CREATE INDEX IF NOT EXISTS idx_projects_display_order ON projects (display_order);
 
+CREATE TABLE IF NOT EXISTS profile_settings (
+  id SMALLINT PRIMARY KEY CHECK (id = 1),
+  photo_url TEXT,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
 INSERT INTO projects (
   id,
   title,

@@ -23,6 +23,8 @@ import {
   SiZod,
 } from 'react-icons/si'
 
+import { getProfilePhotoUrl } from '@/lib/profile'
+
 import ProfilePhotoMorph from '@/components/custom/profile-photo-morph'
 import SmButton from '@/components/custom/sm-button'
 import StackBadge from '@/components/custom/stack-badge'
@@ -33,6 +35,7 @@ type TechItem = {
 }
 
 export default async function Home() {
+  const profilePhotoUrl = await getProfilePhotoUrl()
   const techStack: TechItem[] = [
     { name: 'Next.js', icon: SiNextdotjs },
     { name: 'React', icon: SiReact },
@@ -200,7 +203,7 @@ export default async function Home() {
                 </p>
 
                 <div className="mt-3.5">
-                  <ProfilePhotoMorph />
+                  <ProfilePhotoMorph src={profilePhotoUrl ?? undefined} />
                 </div>
               </div>
             </div>

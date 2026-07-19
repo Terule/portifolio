@@ -1,5 +1,6 @@
 import {
   CreateBucketCommand,
+  GetObjectCommand,
   HeadBucketCommand,
   PutObjectCommand,
   S3Client,
@@ -56,5 +57,23 @@ export async function uploadAsset(params: {
     }),
   )
 
-  return `${endpoint}/${bucketName}/${key}`
+  return `/api/assets/${key}`
+}
+
+export async function getAsset(key: string) {
+  const response = await client.send(
+    new GetObjectCommand({
+      Bucket: bucketName,
+      Key: key,
+    }),
+  )
+
+  if (!response.Body) {
+    return null
+  }
+
+  return {
+    bytes: await response.Body.transformToByteArray(),
+    contentType: response.ContentType ?? 'application/octet-stream',
+  }
 }
