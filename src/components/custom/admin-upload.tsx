@@ -32,10 +32,16 @@ export default function AdminUpload({ type, onUploaded }: AdminUploadProps) {
         body,
       })
 
-      const payload = await response.json()
+      const payload = await response.json().catch(() => null)
 
       if (!response.ok) {
-        throw new Error(payload.error ?? 'Upload failed')
+        throw new Error(payload?.error ?? 'Upload failed')
+      }
+
+      if (!payload?.url) {
+        throw new Error(
+          'Upload failed: the server did not return an image URL.',
+        )
       }
 
       onUploaded(payload.url)
