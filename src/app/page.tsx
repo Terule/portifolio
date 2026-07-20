@@ -28,6 +28,7 @@ import { getProfilePhotoUrl } from '@/lib/profile'
 import ProfilePhotoMorph from '@/components/custom/profile-photo-morph'
 import SmButton from '@/components/custom/sm-button'
 import StackBadge from '@/components/custom/stack-badge'
+import ThemeToggle from '@/components/custom/theme-toggle'
 
 type TechItem = {
   name: string
@@ -65,11 +66,11 @@ export default async function Home() {
   ]
 
   return (
-    <div className="relative min-h-screen overflow-x-clip bg-linear-to-b from-slate-950 via-slate-950 to-slate-900 text-slate-200 selection:bg-cyan-500/30">
+    <div className="site-shell relative min-h-screen overflow-x-clip selection:bg-cyan-500/30">
       <div className="pointer-events-none absolute -top-12 left-0 h-80 w-80 rounded-full bg-cyan-500/15 blur-3xl" />
       <div className="pointer-events-none absolute right-0 top-40 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" />
 
-      <header className="fixed top-0 z-50 w-full border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-md">
+      <header className="site-header fixed top-0 z-50 w-full backdrop-blur-md">
         <div className="mx-auto grid max-w-6xl grid-cols-[auto_1fr_auto] items-center gap-2 px-4 py-4 md:px-6">
           <a
             className="mr-4 truncate font-roboto text-lg font-bold tracking-tight text-slate-100 md:text-xl"
@@ -109,6 +110,7 @@ export default async function Home() {
           </nav>
 
           <nav className="flex gap-1 md:gap-2">
+            <ThemeToggle />
             <SmButton
               href="https://github.com/Terule"
               icon={SiGithub}

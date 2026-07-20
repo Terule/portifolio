@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html className="scroll-smooth" lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${roboto.variable} antialiased bg-slate-950 text-slate-200`}
+        className={`${inter.variable} ${roboto.variable} min-h-screen antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
