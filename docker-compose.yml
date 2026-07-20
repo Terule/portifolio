@@ -17,7 +17,7 @@ services:
       DATABASE_NAME: ${DATABASE_NAME:-portifolio}
       DATABASE_USER: ${DATABASE_USER:-portifolio}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD:-portifolio}
-      S3_ENDPOINT: http://seaweedfs-s3:8333
+      S3_ENDPOINT: http://seaweedfs:8333
       S3_REGION: ${S3_REGION:-us-east-1}
       S3_BUCKET: ${S3_BUCKET:-portfolio-assets}
       S3_ACCESS_KEY: ${S3_ACCESS_KEY:-seaweedfs}
@@ -25,8 +25,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-      seaweedfs-s3:
-        condition: service_started
+      seaweedfs:
+        condition: service_healthy
     expose:
       - "3000"
     restart: unless-stopped
@@ -47,39 +47,22 @@ services:
       timeout: 5s
       retries: 5
 
-  seaweedfs-master:
+  seaweedfs:
     image: chrislusf/seaweedfs:3.80
-    container_name: portifolio-seaweedfs-master
-    command: "master"
+    command: "server -dir=/data -filer -s3 -s3.port=8333"
+    expose:
+      - "8333"
     volumes:
-      - seaweed_master_data:/data
-
-  seaweedfs-volume:
-    image: chrislusf/seaweedfs:3.80
-    container_name: portifolio-seaweedfs-volume
-    command: "volume -mserver=seaweedfs-master:9333 -port=8080 -dir=/data"
-    depends_on:
-      - seaweedfs-master
-    volumes:
-      - seaweed_volume_data:/data
-
-  seaweedfs-filer:
-    image: chrislusf/seaweedfs:3.80
-    container_name: portifolio-seaweedfs-filer
-    command: "filer -master=seaweedfs-master:9333"
-    depends_on:
-      - seaweedfs-master
-      - seaweedfs-volume
-
-  seaweedfs-s3:
-    image: chrislusf/seaweedfs:3.80
-    container_name: portifolio-seaweedfs-s3
-    command: "s3 -filer=seaweedfs-filer:8888 -port=8333"
-    depends_on:
-      - seaweedfs-filer
+      - seaweedfs_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:8888/"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 30s
+    restart: unless-stopped
 
 
 volumes:
   postgres_data:
-  seaweed_master_data:
-  seaweed_volume_data:
+  seaweedfs_data:
