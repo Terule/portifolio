@@ -6,20 +6,20 @@ interface ProfilePhotoMorphProps {
 
 export default function ProfilePhotoMorph({ src }: ProfilePhotoMorphProps) {
   return (
-    <div className="morph-frame">
-      <div className="morph-outline" />
-      <div className="morph-image-wrap">
+    <div className="portrait-frame">
+      <div className="portrait-frame__orbit" />
+      <div className="portrait-frame__arch">
         <Image
           alt="Portrait of Rafael Aguiar"
-          className="morph-image"
+          className="portrait-frame__image"
           fill
-          sizes="(max-width: 768px) 260px, 320px"
+          priority
+          sizes="(max-width: 768px) 320px, 440px"
           src={src || '/images/profile-placeholder.svg'}
           unoptimized
         />
       </div>
-      <div className="morph-shade" />
-      <div className="morph-grain" />
+      <span className="portrait-frame__signature">RA / 01</span>
     </div>
   )
 }

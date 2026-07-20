@@ -12,11 +12,15 @@ import {
 } from '@/lib/projects-admin'
 
 export async function saveProfilePhotoAction(formData: FormData) {
+  await setProfilePhotoAction(String(formData.get('photoUrl') ?? ''))
+}
+
+export async function setProfilePhotoAction(photoUrl: string) {
   if (!(await isAdminAuthenticated())) {
     redirect('/admin/login')
   }
 
-  await updateProfilePhotoUrl(String(formData.get('photoUrl') ?? ''))
+  await updateProfilePhotoUrl(photoUrl)
 
   revalidatePath('/')
   revalidatePath('/admin')

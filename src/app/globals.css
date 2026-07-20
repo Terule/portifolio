@@ -367,6 +367,26 @@
   align-self: center;
 }
 
+.hero__intro > * {
+  animation: portfolio-rise 700ms cubic-bezier(0.22, 0.75, 0.25, 1) both;
+}
+
+.hero__intro > :nth-child(1) {
+  animation-delay: 80ms;
+}
+
+.hero__intro > :nth-child(2) {
+  animation-delay: 150ms;
+}
+
+.hero__intro > :nth-child(3) {
+  animation-delay: 230ms;
+}
+
+.hero__intro > :nth-child(4) {
+  animation-delay: 310ms;
+}
+
 .eyebrow,
 .section-label {
   color: var(--portfolio-accent-strong);
@@ -437,6 +457,7 @@
   position: relative;
   display: grid;
   align-content: center;
+  animation: portfolio-fade 900ms 220ms cubic-bezier(0.22, 0.75, 0.25, 1) both;
 }
 
 .hero__portrait::before {
@@ -1153,4 +1174,120 @@
   z-index: 1;
   max-width: 27rem;
   margin: 0 0 0 auto;
+}
+
+.portrait-frame {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 28rem);
+  margin-left: auto;
+  aspect-ratio: 0.74;
+}
+
+.portrait-frame__arch {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 14rem 14rem 1.5rem 1.5rem;
+  background: color-mix(in oklab, var(--portfolio-accent) 16%, var(--card));
+  box-shadow: 1.2rem 1.2rem 0
+    color-mix(in oklab, var(--foreground) 7%, transparent);
+  animation: portrait-reveal 1100ms 350ms cubic-bezier(0.22, 0.75, 0.25, 1) both;
+}
+
+.portrait-frame__image {
+  object-fit: cover;
+  object-position: 50% 20%;
+  filter: grayscale(1) contrast(1.12) brightness(1.04);
+  mix-blend-mode: multiply;
+  transform: scale(1.04);
+  animation: portrait-drift 9s ease-in-out infinite alternate;
+}
+
+.dark .portrait-frame__image {
+  filter: grayscale(1) contrast(1.08) brightness(0.95);
+  mix-blend-mode: screen;
+}
+
+.portrait-frame__orbit {
+  position: absolute;
+  top: -8%;
+  right: -12%;
+  width: 52%;
+  aspect-ratio: 1;
+  border: 1px solid var(--portfolio-line);
+  border-radius: 50%;
+  animation: orbit-drift 14s ease-in-out infinite alternate;
+}
+
+.portrait-frame__signature {
+  position: absolute;
+  right: -1.2rem;
+  bottom: 1.4rem;
+  z-index: 2;
+  padding: 0.45rem 0.6rem;
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+@keyframes portfolio-rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes portfolio-fade {
+  from {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes portrait-reveal {
+  from {
+    clip-path: inset(100% 0 0 0 round 14rem 14rem 1.5rem 1.5rem);
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 14rem 14rem 1.5rem 1.5rem);
+  }
+}
+
+@keyframes portrait-drift {
+  from {
+    transform: scale(1.04) translateY(0);
+  }
+  to {
+    transform: scale(1.09) translateY(-1.5%);
+  }
+}
+
+@keyframes orbit-drift {
+  from {
+    transform: rotate(-8deg) translateY(0);
+  }
+  to {
+    transform: rotate(10deg) translateY(-1rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__intro > *,
+  .hero__portrait,
+  .portrait-frame__arch,
+  .portrait-frame__image,
+  .portrait-frame__orbit {
+    animation: none;
+  }
 }

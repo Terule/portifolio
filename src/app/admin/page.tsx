@@ -7,12 +7,12 @@ import { getProjects } from '@/lib/projects'
 import {
   deleteProjectAction,
   logoutAdminAction,
-  saveProfilePhotoAction,
   saveProjectAction,
   setFeaturedProjectAction,
 } from './actions'
 
 import AdminCoverUploadField from '@/components/custom/admin-cover-upload-field'
+import AdminProfilePhotoUpload from '@/components/custom/admin-profile-photo-upload'
 
 export default async function AdminPage({
   searchParams,
@@ -55,23 +55,9 @@ export default async function AdminPage({
             Upload the portrait shown on the home page.
           </p>
 
-          <form
-            action={saveProfilePhotoAction}
-            className="mt-4 max-w-xl space-y-4"
-          >
-            <AdminCoverUploadField
-              defaultValue={profilePhotoUrl ?? ''}
-              name="photoUrl"
-              placeholder="Profile photo URL (/images/... or S3 URL)"
-              type="profile"
-            />
-            <button
-              className="inline-flex rounded-xl bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-400"
-              type="submit"
-            >
-              Save profile photo
-            </button>
-          </form>
+          <div className="mt-4 max-w-xl">
+            <AdminProfilePhotoUpload defaultValue={profilePhotoUrl ?? ''} />
+          </div>
         </section>
 
         <section

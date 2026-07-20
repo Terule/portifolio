@@ -6,7 +6,7 @@ type UploadType = 'projects' | 'profile'
 
 interface AdminUploadProps {
   type: UploadType
-  onUploaded: (url: string) => void
+  onUploaded: (url: string) => void | Promise<void>
 }
 
 export default function AdminUpload({ type, onUploaded }: AdminUploadProps) {
@@ -44,7 +44,7 @@ export default function AdminUpload({ type, onUploaded }: AdminUploadProps) {
         )
       }
 
-      onUploaded(payload.url)
+      await onUploaded(payload.url)
     } catch (uploadError) {
       setError(
         uploadError instanceof Error ? uploadError.message : 'Upload failed',
