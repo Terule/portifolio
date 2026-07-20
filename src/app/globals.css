@@ -1209,15 +1209,38 @@
   mix-blend-mode: screen;
 }
 
-.portrait-frame__orbit {
+.portrait-frame__orbits {
   position: absolute;
-  top: -8%;
-  right: -12%;
-  width: 52%;
-  aspect-ratio: 1;
-  border: 1px solid var(--portfolio-line);
-  border-radius: 50%;
-  animation: orbit-drift 14s ease-in-out infinite alternate;
+  top: -7%;
+  right: -8%;
+  bottom: -7%;
+  left: -8%;
+  z-index: 2;
+  width: 116%;
+  height: 114%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.portrait-frame__orbit-line {
+  fill: none;
+  stroke: var(--portfolio-accent);
+  stroke-linecap: round;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.portrait-frame__orbit-line--outer {
+  stroke-dasharray: 132 76;
+  stroke-width: 1.25;
+  animation: portrait-orbit-outer 12s linear infinite;
+}
+
+.portrait-frame__orbit-line--inner {
+  stroke: color-mix(in oklab, var(--portfolio-accent) 65%, var(--foreground));
+  stroke-dasharray: 108 92;
+  stroke-width: 0.9;
+  animation: portrait-orbit-inner 15s linear infinite;
 }
 
 .portrait-frame__signature {
@@ -1273,12 +1296,17 @@
   }
 }
 
-@keyframes orbit-drift {
-  from {
-    transform: rotate(-8deg) translateY(0);
-  }
+@keyframes portrait-orbit-outer {
   to {
-    transform: rotate(10deg) translateY(-1rem);
+    stroke-dashoffset: -416;
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes portrait-orbit-inner {
+  to {
+    stroke-dashoffset: 392;
+    transform: rotate(-360deg);
   }
 }
 
@@ -1287,7 +1315,8 @@
   .hero__portrait,
   .portrait-frame__arch,
   .portrait-frame__image,
-  .portrait-frame__orbit {
+  .portrait-frame__orbits,
+  .portrait-frame__orbit-line {
     animation: none;
   }
 }
