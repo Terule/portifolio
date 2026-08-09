@@ -1,8 +1,8 @@
-node_modules
-.next
 .git
-.gitignore
-.env
+.next
+node_modules
+.env*
+coverage
+.DS_Store
 npm-debug.log*
-Dockerfile*
-docker-compose*.yml
+README.md

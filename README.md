@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rafael Aguiar / Terule — Portfolio
 
-## Getting Started
+Modern software-engineering portfolio built with Next.js, TypeScript, Tailwind CSS, shadcn/ui, Motion, and Three.js.
 
-First, run the development server:
+## Profile photo
+
+Add Rafael's portrait as `public/images/profile.jpg`. The hero photo slot will pick it up automatically; until then it displays a styled placeholder.
+
+## Local development
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Validate a production build with:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint
+npx next build --webpack
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy with Coolify
 
-## Learn More
+1. Push this repository to your Git provider.
+2. In Coolify, create a **New Resource** from that repository and select either **Dockerfile** or **Docker Compose** as the build pack.
+3. Set the domain to `terule.dev.br` and enable HTTPS.
+4. Use port `3000` as the exposed/container port. Coolify will route traffic and use the container health check automatically.
 
-To learn more about Next.js, take a look at the following resources:
+The Docker image uses Next.js standalone output, runs as a non-root user, and includes only runtime files. No environment variables are required for the current static portfolio.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For local production testing with Compose:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+docker compose up --build
+```

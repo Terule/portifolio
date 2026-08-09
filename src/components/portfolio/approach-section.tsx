@@ -1,0 +1,7 @@
+import type { PortfolioContent } from "@/lib/portfolio";
+
+type ApproachSectionProps = { content: PortfolioContent };
+
+export function ApproachSection({ content }: ApproachSectionProps) {
+  return <section id="about" className="border-y border-white/10 bg-[#111] px-5 py-20 sm:px-8 lg:px-12 lg:py-28"><div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1fr_1.45fr]"><p className="bg-gradient-to-r from-[#22c55e] to-[#38bdf8] bg-clip-text text-sm font-medium tracking-[0.16em] text-transparent">{content.approach.eyebrow}</p><div><h2 className="max-w-3xl text-3xl font-medium leading-[1.08] tracking-[-0.045em] sm:text-5xl">{content.approach.headline}</h2><p className="mt-6 max-w-2xl text-base leading-7 text-white/60">{content.approach.description}</p><div className="mt-12 grid gap-10 md:grid-cols-2"><div><p className="text-xs font-semibold tracking-[0.14em] text-[#22c55e]">{content.approach.educationLabel}</p><ul className="mt-4 flex flex-col gap-3 text-sm leading-6 text-white/65">{content.approach.education.map((item) => <li key={item}>{item}</li>)}</ul></div><div><p className="text-xs font-semibold tracking-[0.14em] text-[#38bdf8]">{content.approach.skillsLabel}</p><div className="mt-4 flex flex-wrap gap-2">{content.approach.skills.map((item) => <span key={item} className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-white/65">{item}</span>)}</div></div></div></div></div></section>;
+}

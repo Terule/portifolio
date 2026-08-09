@@ -1,42 +1,12 @@
-import type { Metadata } from 'next'
-import { Inter, Roboto } from 'next/font/google'
-import './globals.css'
-
-import { ThemeProvider } from '@/components/custom/theme-provider'
-
-const roboto = Roboto({
-  weight: ['400', '500', '700'],
-  variable: '--font-roboto',
-  subsets: ['latin'],
-  display: 'swap',
-})
-
-const inter = Inter({
-  variable: '--font-inter',
-  subsets: ['latin'],
-  display: 'swap',
-})
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Rafael.dev',
-  description:
-    'The personal website of Rafael Aguiar, a software engineer and tech enthusiast.',
-}
+  title: "Rafael Aguiar Gomes — Full-Stack Developer",
+  description: "Rafael Aguiar Gomes (Terule) bridges IT operations with modern full-stack development.",
+  metadataBase: new URL("https://terule.dev.br"),
+};
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
-  return (
-    <html className="scroll-smooth" lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} ${roboto.variable} min-h-screen antialiased`}
-      >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  )
+export default function RootLayout({ children }: LayoutProps<"/">) {
+  return <html lang="en" className="dark"><body>{children}</body></html>;
 }
